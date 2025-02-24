@@ -1,0 +1,39 @@
+const foodDatabase = {
+    "ข้าวผัด": { calories: 500, carbs: 80, protein: 15, fat: 10 },
+    "ต้มยำกุ้ง": { calories: 300, carbs: 20, protein: 25, fat: 5 },
+    "ไก่ย่าง": { calories: 250, carbs: 10, protein: 30, fat: 8 },
+};
+
+let dailyIntake = {
+    breakfast: { calories: 0, carbs: 0, protein: 0, fat: 0 },
+    lunch: { calories: 0, carbs: 0, protein: 0, fat: 0 },
+    dinner: { calories: 0, carbs: 0, protein: 0, fat: 0 },
+};
+
+function logMeal(meal, foodName) {
+    if (!foodDatabase[foodName]) {
+        console.log(ไม่พบข้อมูลโภชนาการของ ${foodName});
+        return;
+    }
+    
+    let foodData = foodDatabase[foodName];
+    dailyIntake[meal].calories += foodData.calories;
+    dailyIntake[meal].carbs += foodData.carbs;
+    dailyIntake[meal].protein += foodData.protein;
+    dailyIntake[meal].fat += foodData.fat;
+    
+    console.log(บันทึก ${foodName} ในมื้อ ${meal});
+    displayDailyIntake();
+}
+
+function displayDailyIntake() {
+    console.log("สรุปการบริโภควันนี้:");
+    for (let meal in dailyIntake) {
+        console.log(${meal} - Calories: ${dailyIntake[meal].calories}, Carbs: ${dailyIntake[meal].carbs}g, Protein: ${dailyIntake[meal].protein}g, Fat: ${dailyIntake[meal].fat}g);
+    }
+}
+
+// Example usage
+logMeal("breakfast", "ข้าวผัด");
+logMeal("lunch", "ต้มยำกุ้ง");
+logMeal("dinner", "ไก่ย่าง"); 
